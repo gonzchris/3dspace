@@ -1,6 +1,6 @@
 import { Canvas, useFrame } from '@react-three/fiber'
 import { useGLTF, MeshReflectorMaterial, BakeShadows } from '@react-three/drei'
-import { EffectComposer, Bloom, DepthOfField, ToneMapping } from '@react-three/postprocessing'
+import { EffectComposer, Bloom, DepthOfField } from '@react-three/postprocessing'
 import { easing } from 'maath'
 import { suspend } from 'suspend-react'
 import { Instances, Computers } from './Computers'
@@ -36,8 +36,6 @@ export default function App() {
             metalness={0.8}
           />
         </mesh>
-        {/* Bunny and a light give it more realism */}
-        <Bun scale={0.4} position={[0, 0.3, 0.5]} rotation={[0, -Math.PI * 0.85, 0]} />
         <pointLight distance={1.5} intensity={1} position={[-0.15, 0.7, 0]} color="orange" />
       </group>
       {/* Postprocessing */}
@@ -55,7 +53,6 @@ export default function App() {
 
 function Bun(props) {
   const { nodes } = useGLTF(suspend(suzi).default)
-  console.log(nodes)
   return (
     <mesh receiveShadow castShadow geometry={nodes.mesh.geometry} {...props}>
       <meshStandardMaterial color="#222" roughness={0.5} />

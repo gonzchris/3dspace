@@ -16,12 +16,12 @@ export function SpinningBox({ scale, ...props }) {
     <mesh
       {...props}
       ref={ref}
-      scale={clicked ? scale * 1.4 : scale * 1.2}
+      scale={clicked ? scale * 1.1 : scale * 1.0}
       onClick={(event) => click(!clicked)}
       onPointerOver={(event) => hover(true)}
       onPointerOut={(event) => hover(false)}>
       <boxGeometry />
-      <meshStandardMaterial color={hovered ? 'hotpink' : 'indianred'} />
+      <meshStandardMaterial color={hovered ? 'white' : 'teal'} />
     </mesh>
   )
 }
