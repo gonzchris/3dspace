@@ -185,13 +185,13 @@ function Screen({ frame, panel, children, ...props }) {
 function ScreenText({ invert, x = 0, y = 1.2, ...props }) {
   const textRef = useRef()
   const rand = Math.random() * 10000
-  useFrame((state) => (textRef.current.position.x = x + Math.sin(rand + state.clock.elapsedTime / 4) * 8))
+  useFrame((state) => (textRef.current.position.x = x + Math.sin(rand + state.clock.elapsedTime / 8) * 8))
   return (
     <Screen {...props}>
       <PerspectiveCamera makeDefault manual aspect={1 / 1} position={[0, 0, 15]} />
       <color attach="background" args={[invert ? 'black' : '#35c19f']} />
-      <ambientLight intensity={0.5} />
-      <directionalLight position={[10, 10, 5]} />
+      <ambientLight intensity={0.4} />
+      <directionalLight position={[10, 10, 5]} intensity={0.4} />
       <Text font="/Inter-Medium.woff" position={[x, y, 0]} ref={textRef} fontSize={4} letterSpacing={-0.1} color={!invert ? 'black' : '#35c19f'}>
         lucidOS
       </Text>
@@ -205,10 +205,10 @@ function ScreenInteractive(props) {
     <Screen {...props}>
       <PerspectiveCamera makeDefault manual aspect={1 / 1} position={[0, 0, 10]} />
       <color attach="background" args={['black']} />
-      <ambientLight intensity={Math.PI / 2} />
-      <pointLight decay={0} position={[10, 10, 10]} intensity={Math.PI} />
-      <pointLight decay={0} position={[-10, -10, -10]} />
-      <SpinningBox position={[-3.15, 0.75, 0]} scale={0.5} />
+      <ambientLight intensity={0.4} />
+      <pointLight decay={0} position={[10, 10, 10]} intensity={0.4} />
+      <pointLight decay={0} position={[-10, -10, -10]} intensity={0.4} />
+      <SpinningBox position={[-3.15, 0.75, 0]} scale={0.4} />
     </Screen>
   )
 }
@@ -225,21 +225,21 @@ function Leds({ instances }) {
     ref.current.children.forEach((instance) => {
       const rand = Math.abs(2 + instance.position.x)
       const t = Math.round((1 + Math.sin(rand * 10000 + state.clock.elapsedTime * rand)) / 2)
-      instance.color.setRGB(0, t * 1.1, t)
+      instance.color.setRGB(t * 1.1, t * 1.1, t * 1.1)
     })
   })
   return (
     <group ref={ref}>
-      <instances.Sphere position={[-0.41, 1.1, -2.21]} scale={0.005} color={[1, 2, 1]} />
-      <instances.Sphere position={[0.59, 1.32, -2.22]} scale={0.005} color={[1, 2, 1]} />
-      <instances.Sphere position={[1.77, 1.91, -1.17]} scale={0.005} color={[1, 2, 1]} />
-      <instances.Sphere position={[2.44, 1.1, -0.79]} scale={0.005} color={[1, 2, 1]} />
-      <instances.Sphere position={[4.87, 3.8, -0.1]} scale={0.005} color={[1, 2, 1]} />
-      <instances.Sphere position={[1.93, 3.8, -3.69]} scale={0.005} color={[1, 2, 1]} />
-      <instances.Sphere position={[-2.35, 3.8, -3.48]} scale={0.005} color={[1, 2, 1]} />
-      <instances.Sphere position={[-4.71, 4.59, -1.81]} scale={0.005} color={[1, 2, 1]} />
-      <instances.Sphere position={[-3.03, 2.85, 1.19]} scale={0.005} color={[1, 2, 1]} />
-      <instances.Sphere position={[-1.21, 1.73, -1.49]} scale={0.005} color={[1, 2, 1]} />
+      <instances.Sphere position={[-0.41, 1.1, -2.21]} scale={0.005} color={[2, 2, 2]} />
+      <instances.Sphere position={[0.59, 1.32, -2.22]} scale={0.005} color={[2, 2, 2]} />
+      <instances.Sphere position={[1.77, 1.91, -1.17]} scale={0.005} color={[2, 2, 2]} />
+      <instances.Sphere position={[2.44, 1.1, -0.79]} scale={0.005} color={[2, 2, 2]} />
+      <instances.Sphere position={[4.87, 3.8, -0.1]} scale={0.005} color={[2, 2, 2]} />
+      <instances.Sphere position={[1.93, 3.8, -3.69]} scale={0.005} color={[2, 2, 2]} />
+      <instances.Sphere position={[-2.35, 3.8, -3.48]} scale={0.005} color={[2, 2, 2]} />
+      <instances.Sphere position={[-4.71, 4.59, -1.81]} scale={0.005} color={[2, 2, 2]} />
+      <instances.Sphere position={[-3.03, 2.85, 1.19]} scale={0.005} color={[2, 2, 2]} />
+      <instances.Sphere position={[-1.21, 1.73, -1.49]} scale={0.005} color={[2, 2, 2]} />
     </group>
   )
 }

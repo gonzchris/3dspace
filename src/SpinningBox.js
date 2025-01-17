@@ -21,7 +21,7 @@ export function SpinningBox({ scale, ...props }) {
       onPointerOver={(event) => hover(true)}
       onPointerOut={(event) => hover(false)}>
       <boxGeometry />
-      <meshStandardMaterial color={hovered ? 'white' : 'teal'} />
+      <meshStandardMaterial color={hovered ? 'white' : 'white'} />
     </mesh>
   )
 }
